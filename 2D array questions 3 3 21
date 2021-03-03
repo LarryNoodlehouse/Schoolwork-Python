@@ -1,0 +1,92 @@
+a = [[1,2,3,4],[2,3,4,5],[3,4,5,6],[4,5,6,7]]
+def max(a):
+  maximum = a[0][0]
+  for x in range(len(a)):
+    for y in range(len(a[0])):
+      if a[x][y] > maximum:
+        maximum = a[x][y]
+  return maximum
+
+def rowsum(a, row):
+  total = 0
+  for x in range(len(a[row])):
+    total = total + a[row][x]
+  return total
+
+def columnSum(a, column):
+  total = 0
+  for x in range(len(a)):
+    total = total + a[x][column]
+  return total
+
+def allrowsums(a):
+  totalarray = []
+  for x in range(len(a)):
+    total = 0
+    for y in range(len(a[x])):
+      total = total + a[x][y]
+    totalarray.append(total)
+  return totalarray
+
+def isrowmagic(a,row):
+  magicrow = True
+  for x in range(len(a[row])-1):
+    if a[row][x] != a[row][x+1]:
+      magicrow = False
+  return magicrow
+
+def iscolumnmagic(a,column):
+  magiccolumn = True
+  for x in range(len(a)-1):
+    if a[x][column] != a[x+1][column]:
+      magiccolumn = False
+  return magiccolumn
+
+def issquare(a):
+  if len(a) == len(a[0]) == len(a[1]) == len(a[2]) == len(a[3]):
+    squarearray = True
+  else:
+    squarearray = False
+  return squarearray
+
+def isMagic(a):
+  totalarray = []
+  magicsquare=True
+  for x in range(len(a)):
+    total = 0
+    for y in range(len(a[x])):
+      total = total + a[x][y]
+    totalarray.append(total)
+  for x in range(len(totalarray)-1):
+    if totalarray[x] != totalarray[x+1]:
+      magicsquare = False
+  return magicsquare
+
+def islatin(a):
+  if issquare(a) == True:
+    for x in range(len(a)):
+      for z in range(len(a[x])):
+        found = False
+        for y in range(len(a[x])):
+          if a[x][y] == z:
+            found = True
+        if found == False:
+          latin = False
+  else:
+    latin=False
+  return latin
+
+def issequence(a):
+  sequence = True
+  if issquare(a) == True:
+    for x in range(len(a)*len(a)):
+      found = False
+      for y in range(len(a)):
+        for z in range(len(a[0])):
+          if a[y][z] == x:
+            found = True
+      if found == False:
+        sequence = False
+  else:
+    sequence = False
+  return sequence
